@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NBA Salary Visualization</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron mt-3 text-center">
+            <h1><strong>NBA Salary Visualization Dashboard</strong></h1>
+            <p class="lead">Use the interactive charts below to explore the dataset</p>
+        </div>
+    </div>
+
+    <div class="container">           
+        <div class="row">
+            <div class="col-md-12">
+                <div id="plot"></div>
+                <script>
+                    var url = "/nbasalary/2017";
+                    Plotly.d3.json(url, function(error, response) {
+                        if (error) return console.warn(error);
+                        console.log(response);
+                        var data = [response];
+                        var layout = {
+                            title: 'NBA Player: Salary vs Plus/Minus Value',
+                            showlegend: false,
+                            autosize: true,
+                            height: 1200,
+                            };
+                        var PLOT = document.getElementById('plot');
+                        Plotly.plot(PLOT, data, layout)
+                    }) 
+                </script>
+            </div>
+        </div> 
+    </div> 
+
+</body>
+</html>
