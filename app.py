@@ -10,13 +10,15 @@ def home():
     """Render Home Page."""
     return render_template("index.html")
 
-@app.route("/nbasalary/2017")
-def nbasalary():
+@app.route("/nbasalary/<year>")
+def nbasalary(year):
 
-    x = df['SAL'].values.tolist()
-    y = df['+/-'].values.tolist()
-    text = df['PLAYER'].values.tolist()    
-    size = (df['PTS']/35).values.tolist()
+    tempdf = df[df['Season']==int(year)]
+
+    x = tempdf['SAL'].values.tolist()
+    y = tempdf['+/-'].values.tolist()
+    text = tempdf['PLAYER'].values.tolist()    
+    size = (tempdf['PTS']/35).values.tolist()
 
     bubbledata = {"x": x, "y": y, "hovertext": text, "mode": "markers", "marker": {"color": "rgb(255, 0, 0)", "size": size}}
 

@@ -16,6 +16,20 @@
         </div>
     </div>
 
+    
+    <div class="container">           
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-2">
+                <h3><strong>Year</strong></h3>
+                <h4><strong><select id='selDataset' onchange='optionChanged(this.value)'>
+                    <option value='2017'>2017</option>
+                    <option value='2016'>2016</option>
+                </select></strong></h4>
+            </div>
+        </div>
+    </div>
+
     <div class="container">           
         <div class="row">
             <div class="col-md-12">
@@ -35,10 +49,26 @@
                         var PLOT = document.getElementById('plot');
                         Plotly.plot(PLOT, data, layout)
                     }) 
+
+                    function updatebubblePlotly(newdata){
+                        var PLOT = document.getElementById('plot');
+                        Plotly.restyle(PLOT, 'x', [newdata.x]);
+                        Plotly.restyle(PLOT, 'y', [newdata.y]);
+                        Plotly.restyle(PLOT, 'hovertext', [newdata.hovertext])
+                        Plotly.restyle(PLOT, 'marker.size', [newdata.marker.size])
+                    }
+
+                    function optionChanged(route){
+                        Plotly.d3.json(`/nbasalary/${route}`, function(error, data){
+                            updatebubblePlotly(data);
+                        });
+                    }   
+
                 </script>
             </div>
-        </div> 
+        </div>
     </div> 
 
+    
 </body>
 </html>
