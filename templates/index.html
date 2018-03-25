@@ -4,71 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NBA Salary Visualization</title>
+    <title>NBA Players Stats Visualization</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="jumbotron mt-3 text-center">
-            <h1><strong>NBA Salary Visualization Dashboard</strong></h1>
+            <h1><strong>NBA Players Stats Dashboard</strong></h1>
             <p class="lead">Use the interactive charts below to explore the dataset</p>
         </div>
     </div>
 
-    
     <div class="container">           
         <div class="row">
             <div class="col-md-6"></div>
             <div class="col-md-2">
-                <h3><strong>Year</strong></h3>
-                <h4><strong><select id='selDataset' onchange='optionChanged(this.value)'>
+                <h2><strong>Year</strong></h2>
+                <h3><strong><select id='selDataset' onchange='optionChanged(this.value)'>
                     <option value='2017'>2017</option>
                     <option value='2016'>2016</option>
-                </select></strong></h4>
+                    <option value='2015'>2015</option>
+                    <option value='2014'>2014</option>
+                    <option value='2013'>2013</option>
+                </select></strong></h3>
             </div>
         </div>
     </div>
 
-    <div class="container">           
-        <div class="row">
-            <div class="col-md-12">
-                <div id="plot"></div>
-                <script>
-                    var url = "/nbasalary/2017";
-                    Plotly.d3.json(url, function(error, response) {
-                        if (error) return console.warn(error);
-                        console.log(response);
-                        var data = [response];
-                        var layout = {
-                            title: 'NBA Player: Salary vs Plus/Minus Value',
-                            showlegend: false,
-                            autosize: true,
-                            height: 1200,
-                            };
-                        var PLOT = document.getElementById('plot');
-                        Plotly.plot(PLOT, data, layout)
-                    }) 
 
-                    function updatebubblePlotly(newdata){
-                        var PLOT = document.getElementById('plot');
-                        Plotly.restyle(PLOT, 'x', [newdata.x]);
-                        Plotly.restyle(PLOT, 'y', [newdata.y]);
-                        Plotly.restyle(PLOT, 'hovertext', [newdata.hovertext])
-                        Plotly.restyle(PLOT, 'marker.size', [newdata.marker.size])
-                    }
+    <div id="plot"></div>
+    <script>
+        var url = "/nbasalary/2017";
+        Plotly.d3.json(url, function(error, response) {
+            if (error) return console.warn(error);
+            console.log(response);
+            var data = [response];
+            var layout = {
+                title: 'NBA Player: Salary vs Plus/Minus Value',
+                showlegend: false,
+                autosize: true,
+                height: 1200,
+                };
+            var PLOT = document.getElementById('plot');
+            Plotly.plot(PLOT, data, layout)
+        }) 
 
-                    function optionChanged(route){
-                        Plotly.d3.json(`/nbasalary/${route}`, function(error, data){
-                            updatebubblePlotly(data);
-                        });
-                    }   
+        function updatebubblePlotly(newdata){
+            var PLOT = document.getElementById('plot');
+            Plotly.restyle(PLOT, 'x', [newdata.x]);
+            Plotly.restyle(PLOT, 'y', [newdata.y]);
+            Plotly.restyle(PLOT, 'hovertext', [newdata.hovertext])                        
+            Plotly.restyle(PLOT, 'marker.color', [newdata.marker.color])
+            Plotly.restyle(PLOT, 'marker.size', [newdata.marker.size])
+        }
 
-                </script>
-            </div>
-        </div>
-    </div> 
+        function optionChanged(route){
+            Plotly.d3.json(`/nbasalary/${route}`, function(error, data){
+                updatebubblePlotly(data);
+            });
+        }   
 
-    
+    </script>
+
 </body>
 </html>
