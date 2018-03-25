@@ -45,7 +45,9 @@
                 showlegend: false,
                 autosize: true,
                 height: 1200,
-                };
+                xaxis: {title: 'Player Salary ($)'},
+                yaxis: {title: 'Plus-Minus Value'},
+            };
             var PLOT = document.getElementById('plot');
             Plotly.plot(PLOT, data, layout)
         }) 
