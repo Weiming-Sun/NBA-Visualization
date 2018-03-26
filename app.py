@@ -11,7 +11,7 @@ for team in df["TEAM"]:
         colorlist.append("rgb(255, 0, 0)")
 df['COLOR'] = colorlist
 
-df["text"] = df["PLAYER"] + " (" + df["TEAM"] + ")"
+df["hovertext"] = df["PLAYER"] + " (" + df["TEAM"] + ")"
 
 app = Flask(__name__)
 
@@ -20,25 +20,28 @@ def home():
     """Render Home Page."""
     return render_template("index.html")
 
-@app.route("/nbasalary/<year>")
-def nbasalary(year):
+@app.route("/nbasalary/<year>/<gtype>")
+def nbasalary(year, gtype):
 
-    tempdf = df[df['Season']==int(year)]
+    tempdf = df[(df['Season']==int(year)) & (df['Type']==gtype)]
     tempdf = tempdf.reset_index(drop=True)
-    '''tempdf.to_csv('result.csv')'''
+    tempdf.to_csv('result.csv')
 
     x = tempdf['SAL'].values.tolist()
     y = tempdf['+/-'].values.tolist()
-    text = tempdf['text'].values.tolist()    
+    hovertext = tempdf['hovertext'].values.tolist()    
     color = tempdf['COLOR'].values.tolist()   
-    size = (tempdf['PTS']/35).values.tolist()
+    if gtype == 'Regular':
+        size = (tempdf['PTS']/20).values.tolist()
+    else:
+        size = (tempdf['PTS']/5).values.tolist()
 
-    data = {"x": x, "y": y, "hovertext": text, "mode": "markers", "marker": {"color": color, "size": size}}
+    data = {"x": x, "y": y, "hovertext": hovertext, "mode": "markers", "marker": {"color": color, "size": size}}
 
     tempdf = df.iloc[0:0]
     x = []
     y = []
-    text = []
+    hovertext = []
     color = []
     size = []
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NBA Players Stats Visualization</title>
+    <title>NBA Players Stats Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -18,15 +18,20 @@
 
     <div class="container">           
         <div class="row">
-            <div class="col-md-6"></div>
+            <div class="col-md-5"></div>
             <div class="col-md-2">
-                <h2><strong>Year</strong></h2>
+                <h3><strong>-- Year/Type --</strong></h3>
                 <h3><strong><select id='selDataset' onchange='optionChanged(this.value)'>
-                    <option value='2017'>2017</option>
-                    <option value='2016'>2016</option>
-                    <option value='2015'>2015</option>
-                    <option value='2014'>2014</option>
-                    <option value='2013'>2013</option>
+                    <option value='2017-Regular'>2017-Regular</option>
+                    <option value='2017-Playoff'>2017-Playoff</option>
+                    <option value='2016-Regular'>2016-Regular</option>
+                    <option value='2016-Playoff'>2016-Playoff</option>
+                    <option value='2015-Regular'>2015-Regular</option>
+                    <option value='2015-Playoff'>2015-Playoff</option>
+                    <option value='2014-Regular'>2014-Regular</option>
+                    <option value='2014-Playoff'>2014-Playoff</option>
+                    <option value='2013-Regular'>2013-Regular</option>
+                    <option value='2013-Playoff'>2013-Playoff</option>
                 </select></strong></h3>
             </div>
         </div>
@@ -35,7 +40,7 @@
 
     <div id="plot"></div>
     <script>
-        var url = "/nbasalary/2017";
+        var url = "/nbasalary/2017/Regular";
         Plotly.d3.json(url, function(error, response) {
             if (error) return console.warn(error);
             console.log(response);
@@ -62,10 +67,13 @@
         }
 
         function optionChanged(route){
-            Plotly.d3.json(`/nbasalary/${route}`, function(error, data){
+            var arr = route.split("-");
+            Plotly.d3.json(`/nbasalary/${arr[0]}/${arr[1]}`, function(error, data){
                 updatebubblePlotly(data);
             });
         }   
+
+        
 
     </script>
 
