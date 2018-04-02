@@ -1,0 +1,57 @@
+div {
+	padding: 2em;
+	font-size: 20px;
+	text-align: left;
+	background: #EAECEE;
+	border-radius: 10px;
+	border-collapse: 
+	width: 1000px;
+	margin: 10px 60px 0px 60px;
+	background-image: url("nbaimage.jpeg");
+	background-size: 90%;
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 55px;
+	color: black;
+}
+
+th {
+    padding: 5px;
+    font-size: 10px;
+    display: inline-block;
+    border-radius: 5px;
+	border: 1px solid #2E86C1;
+	width: 150px;
+	margin-left: 5px;
+}
+
+.header {
+	padding: 1em;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	background: #2E86C1;
+	color: white;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	width: 150px;
+	margin-left: 5px;
+}
+
+nav {
+	float: left;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style-position: none;
+}
+
+nav li {
+	display: inline-block;
+	margin-left: 50px;
+	font-weight: bold;
+}

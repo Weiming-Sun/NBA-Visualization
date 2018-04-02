@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dropdown Events</title>
+    <link rel="stylesheet" href="stats.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+     <nav>
+      <ul>
+        <li><a href="#">Salary</a></li>
+        <li><a href="#">Age Distribution</a></li>
+        <li><a href="landing.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <h2>2017 Top 10 Player Stats</h2>
+
+    <select id="selDataset" onchange="getData(this.value)">
+        <option value="dataset1">PTS</option>
+        <option value="dataset2">AST</option>
+        <option value="dataset3">REB</option>
+        <option value="dataset4">BLK</option>
+        <option value="dataset5">STL</option>
+        <option value="dataset6">TOV</option>
+    </select>
+
+    <div id="pie"></div>
+
+    <script src="plot.js"></script>
+
+    <div id="plot"></div>
+    <script src="data.js"></script>
+    <script src="plot.js"></script>
+</body>
+</html>
