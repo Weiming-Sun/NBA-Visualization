@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>NBA Stats</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="../static/style.css" rel="stylesheet">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+        <!--<div class="inner-box">-->
+          <h1>NBA stats data analysis</h1>
+          <p>Use the intercative charts below to explore the dataset</p>
+          <h3 class = "heading">Select Season and the type of game</h3>
+          <select id="selDataset" onchange="optionChanged(this.value)">
+          </select>
+        </div>
+    <!--<div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 box-left">
+        <div class="inner-box">-->
+
+          </div> 
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 box-left">
+            <div class="inner-box">
+              <div id="agedistribution" ></div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 box-left">
+            <div class="inner-box">
+              <div id="ageAndTop3Pts" ></div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 box-left">
+            <div class="inner-box">
+              <div id="ageAndTopFGM" ></div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 box-left">
+            <div class="inner-box">
+             <div id="ageandTopPWin" ></div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 box-left">
+            <div class="inner-box">
+              <div id="AvgSalaryAndAge"></div>
+        </div>
+    </div>
+    </div>
+<script src="../static/plots.js"></script>
+</body>
+</html> 
